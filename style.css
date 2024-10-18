@@ -1,0 +1,34 @@
+body {
+    background-color: black;
+    color: red;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Taşma durumunu gizle */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.snow {
+    position: absolute;
+    top: -10%; /* Yukarıdan başlayacak */
+    background: white; /* Kar tanelerinin rengi */
+    opacity: 0.8;
+    pointer-events: none; /* Fare ile etkileşim yok */
+    border-radius: 50%; /* Yuvarlak kar taneleri */
+    animation: fall linear infinite; /* Sürekli düşme efekti */
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0); /* Başlangıç konumu */
+    }
+    100% {
+        transform: translateY(100vh); /* Aşağıya doğru hareket */
+    }
+}
