@@ -17,10 +17,16 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden; /* Taşmayı gizle */
+            position: relative; /* Yağmur damlalarının konumunu kontrol etmek için */
         }
         h1 {
             font-size: 3em;
             margin: 20px 0 10px 0;
+            transition: text-shadow 0.3s ease; /* Hover efekti için geçiş */
+        }
+        h1:hover {
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.8), 0 0 20px rgba(255, 255, 0, 0.6); /* Hover efekti */
         }
         .profile-pic {
             width: 100px; /* Resim boyutu */
@@ -36,16 +42,85 @@
             font-size: 1.5em;
             cursor: pointer;
             margin: 10px 0;
+            transition: transform 0.3s ease; /* Geçiş efekti */
         }
         .button:hover {
             background-color: darkred;
+            transform: translateX(10px); /* Sağ kaydırma efekti */
+        }
+        .sparkle {
+            display: inline-block;
+            position: relative;
+            color: yellow; /* Parlak sarı */
+            transition: text-shadow 0.3s ease;
+        }
+        .sparkle:hover {
+            text-shadow: 0 0 20px rgba(255, 255, 0, 1), 0 0 30px rgba(255, 255, 0, 0.7); /* Parlaklık arttığında */
+        }
+        .dev-section {
+            margin-top: 20px;
+            color: white; /* Yazı rengi beyaz */
+        }
+        /* Yağmur damlaları için stil */
+        .rain {
+            position: absolute;
+            top: -10%;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(0); /* Başlangıç konumu */
+            }
+            100% {
+                transform: translateY(100vh); /* Aşağıya doğru hareket */
+            }
         }
     </style>
 </head>
 <body>
-    <img src="https://avatars.mds.yandex.net/i?id=ecc75b7e5d90e97d1e9fe45b30701b4097b8883a-5592183-images-thumbs&n=13" alt="Profil Fotoğrafı" class="profile-pic">
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
+
+    <img src="https://i.pinimg.com/originals/77/76/b1/7776b17a63594aa626184c93119fccb3.gif" alt="Profil Fotoğrafı" class="profile-pic">
     <h1>KyojuStudio</h1>
     <button class="button" onclick="window.open('https://discord.gg/4AMFHcVdwb', '_blank')">Discord'a Katıl</button>
     <button class="button" onclick="window.open('https://www.youtube.com/@kyojustudio/videos', '_blank')">YouTube Kanalım</button>
+
+    <div class="dev-section">
+        <h2>Biz Kimiz?</h2>
+        <p>Kyoju Studio oyun hileleri ve yazılım üzerine kurulmuş bir topluluktur. Amacımız insanların bedava bir şekilde oyun hileleri ve yazılımlarına ulaşmalarıdır.</p>
+        <h2>Developerler</h2>
+        <p class="sparkle">Kyoju</p>
+        <p class="sparkle">Witch</p>
+        <p class="sparkle">Vitao</p>
+        <p class="sparkle">Maxim</p>
+    </div>
+
+    <script>
+        const rainCount = 30; // Damlaların sayısı
+        const body = document.body;
+
+        for (let i = 0; i < rainCount; i++) {
+            const rainDrop = document.createElement("div");
+            rainDrop.classList.add("rain");
+            const size = Math.random() * 5 + 2; // Damlaların boyutu
+            rainDrop.style.width = size + 'px';
+            rainDrop.style.height = size * 3 + 'px'; // Yükseklik, genişliğin 3 katı
+            rainDrop.style.left = Math.random() * 100 + 'vw'; // Damlaların yatay konumu
+            rainDrop.style.animationDuration = Math.random() * 1 + 0.5 + 's'; // Farklı düşme süreleri
+            rainDrop.style.opacity = Math.random(); // Damlaların saydamlığı
+            body.appendChild(rainDrop);
+        }
+    </script>
 </body>
 </html>
